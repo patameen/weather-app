@@ -1,46 +1,84 @@
-let weather = {
-  paris: {
-    name: "Paris",
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    name: "Tokyo",
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    name: "Lisbon",
-    temp: 30.2,
-    humidity: 20,
-  },
-  sanFrancisco: {
-    name: "San Francisco",
-    temp: 20.9,
-    humidity: 100,
-  },
-  moscow: {
-    name: "Moscow",
-    temp: -5,
-    humidity: 20,
-  },
-};
-
-let userCity = prompt("Type a city!")
-  .toLowerCase()
-  .trim()
-  .replace("sanfrancisco", "san francisco");
-
-if (weather[userCity] !== undefined) {
-  alert(
-    `Temperature in ${weather[userCity].name} is ${Math.round(
-      weather[userCity].temp
-    )} °C( ${Math.round(
-      weather[userCity].temp * (9 / 5) + 32
-    )} °F) with a humidity of ${weather[userCity].humidity} %`
-  );
-} else {
-  alert(
-    `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${userCity}`
-  );
+function formatDate() {
+  let time = document.querySelector("h3");
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let now = new Date();
+  let day = days[now.getDay()];
+  let hours = now.getHours();
+  let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+  time.innerHTML = `${day} ${hours}:${minutes}`;
 }
+formatDate(new Date());
+//Search city, show in h1 and temperature in h2
+//Note to self:Still need .trim() in case of searching spaces!!!
+
+function changeCity(event) {
+  event.preventDefault();
+  let citySearch = document.querySelector("#enter-city");
+  let cityName = document.querySelector("h1");
+  cityName.innerHTML = `${citySearch.value}`;
+
+  let apiKey = "7dfa514196d8ad8df497144d715c56b0";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
+
+  function showWeather(response) {
+    let temperature = Math.round(response.data.main.temp);
+    let h2 = document.querySelector("h2");
+    h2.innerHTML = `${temperature}`;
+  }
+  axios.get(apiUrl).then(showWeather);
+}
+let cityInfo = document.querySelector("#city-form");
+cityInfo.addEventListener("submit", changeCity);
+//Geolocation after pressing arrow
+function geolocal(event) {
+  event.preventDefault();
+
+  function showPosition(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let key = "7dfa514196d8ad8df497144d715c56b0";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
+    console.log(apiUrl);
+    console.log(latitude);
+    console.log(longitude);
+    function showTemp(response) {
+      let temperature = Math.round(response.data.main.temp);
+      console.log(temperature);
+      let locationCity = response.data.name;
+      console.log(locationCity);
+      let h1 = document.querySelector("h1");
+      h1.innerHTML = `${locationCity}`;
+      let h2 = document.querySelector("h2");
+      h2.innerHTML = `${temperature}`;
+
+      function changeToFah(event) {
+        event.preventDefault();
+        let fahrenheitButton = document.querySelector("#fahrenheitButton");
+        let celsiusButton = document.querySelector("#celsiusButton");
+        h2.innerHTML = `${temperature + 32}`;
+        fahrenheitButton.innerHTML = `<button id="fahrenheitButton"><strong>F</strong></button>`;
+        celsiusButton.innerHTML = `<button id="celsiusButton">C /</button>`;
+      }
+      function changeToCel() {
+        window.location.reload();
+      }
+      let tempC = document.querySelector("#celsiusButton");
+      tempC.addEventListener("click", changeToCel);
+      let tempF = document.querySelector("#fahrenheitButton");
+      tempF.addEventListener("click", changeToFah);
+    }
+
+    axios.get(apiUrl).then(showTemp);
+  }
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+let locationButton = document.querySelector("#location-now");
+locationButton.addEventListener("click", geolocal);
