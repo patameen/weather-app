@@ -10,8 +10,9 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="src/weatherApp.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Weather app</title>
+    <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <div class="container">
@@ -20,8 +21,9 @@
           <h1>Riga ☀️</h1>
         </div>
         <div class="col-sm-4 searchEn">
-          <form id="city-form">
+         <form  id="city-form">
             <div class="mb-3">
+              
               <input
                 type="text"
                 class="form-control"
@@ -29,8 +31,8 @@
                 id="enter-city"
                 autocomplete="off"
               /><button id="location-now">➤</button>
-
-              <input type="submit" class="btn btn-primary" id="search-city" />
+              <input type="submit"class="btn btn-primary" id="search-city">
+            
             </div>
           </form>
         </div>
@@ -38,7 +40,9 @@
       <br />
       <div class="row">
         <div class="col">
-          <h2>Now 2°C</h2>
+          <h2>19</h2>
+          <button id="celsiusButton"><strong>C</strong> /</button>
+          <button id="fahrenheitButton">F</button>
           <h3>Time 14:23</h3>
         </div>
         <div class="col-sm-8">
@@ -65,7 +69,7 @@
                 <div class="col day">
                   <div
                     class="card text-center nextDay"
-                    style="max-width: 100px; height: 10rem"
+                    style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
                       <h5 class="card-title">Fri</h5>
@@ -77,7 +81,7 @@
                 <div class="col day">
                   <div
                     class="card text-center nextDay"
-                    style="max-width: 100px; height: 10rem"
+                    style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
                       <h5 class="card-title">Sat</h5>
@@ -89,7 +93,7 @@
                 <div class="col day">
                   <div
                     class="card text-center nextDay"
-                    style="max-width: 100px; height: 10rem"
+                    style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
                       <h5 class="card-title">Sun</h5>
@@ -101,7 +105,7 @@
                 <div class="col day">
                   <div
                     class="card text-center nextDay"
-                    style="max-width: 100px; height: 10rem"
+                    style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
                       <h5 class="card-title">Mon</h5>
@@ -113,7 +117,7 @@
                 <div class="col day">
                   <div
                     class="card text-center nextDay"
-                    style="max-width: 100px; height: 10rem"
+                    style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
                       <h5 class="card-title">Tue</h5>
@@ -125,7 +129,7 @@
                 <div class="col day">
                   <div
                     class="card text-center nextDay"
-                    style="max-width: 100px; height: 10rem"
+                    style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
                       <h5 class="card-title">Wed</h5>
@@ -140,6 +144,7 @@
         </div>
       </div>
     </div>
-    <script src="src/weatherApp.js"></script>
+    <script src="src/index.js"></script>
+    </script>
   </body>
 </html>
