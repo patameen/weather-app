@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1>Riga ☀️</h1>
+          <h1>Riga <span id="weather-icon"></span></h1>
           <p id="weather-description"></p>
         </div>
         <div class="col-5 searchEn">
@@ -45,23 +45,10 @@
           <button id="celsiusButton"><strong>C</strong> /</button>
           <button id="fahrenheitButton">F</button>
           <h3>Time 14:23</h3>
-        </div>
-        <div class="col-sm-8">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title">Weather this day every hour</h5>
-              <p class="card-text">Prognosis of temperature today every hour</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div class="col-sm-4">
-          <p class="humid">Humidity 95%</p>
-          <p class="wind">Wind s 19 km/h</p>
-          <p class="uvi">UVI 0</p>
-          <a href="" title="More info"><small>More info</small></a>
+          <p class="humid">Humidity <span>95</span>%</p>
+          <p class="wind">Wind <span>1</span> km/h</p>
+          <p class="uvi">UVI <span>0</span></p>
+        
         </div>
         <div class="col-sm-8">
           <div class="card">
@@ -141,6 +128,8 @@
                 </div>
               </div>
             </div>
+          </div>    
+        </div>
           </div>
         </div>
       </div>
