@@ -36,6 +36,7 @@ function showPosition(position) {
     console.log(weatherDescription);
     let humidity = response.data.main.humidity;
     let wind = response.data.wind.speed;
+    let mainIcon = response.data.weather[0].icon;
 
     let h1 = document.querySelector("h1");
     h1.innerHTML = `${locationCity}`;
@@ -47,6 +48,13 @@ function showPosition(position) {
     humidityInfo.innerHTML = `${humidity}`;
     let windInfo = document.querySelector("#wind");
     windInfo.innerHTML = `${Math.round(wind)}`;
+    console.log(response.data.weather[0].icon);
+
+    let iconElement = document.querySelector("#icon");
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
+    );
 
     function changeToFah(event) {
       event.preventDefault();
@@ -82,6 +90,12 @@ function showPosition(position) {
     function showWeather(response) {
       let cityName = document.querySelector("h1");
       cityName.innerHTML = `${response.data.name}`;
+      let mainIcon = response.data.weather[0].icon;
+      let iconElement = document.querySelector("#icon");
+      iconElement.setAttribute(
+        "src",
+        `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
+      );
 
       let temperature = Math.round(response.data.main.temp);
       let descriptionInfoSearched = response.data.weather[0].description;
