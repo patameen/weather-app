@@ -60,6 +60,7 @@ footer {
   width: 1000px;
   border: 4px solid blue;
   border-radius: 10px;
+  background: lightblue;
 }
 .mb-3 {
   display: inline-block;
