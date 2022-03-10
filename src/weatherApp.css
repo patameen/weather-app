@@ -19,7 +19,8 @@ footer {
 }
 #location-now {
   font-size: 24px;
-  rotate: -140deg;
+  display: inline;
+  transform: rotate(-40deg);
 }
 #location-now:hover {
   color: blue;
@@ -34,6 +35,7 @@ footer {
 #search-city {
   position: relative;
   bottom: 2px;
+  font-size: 12px;
 }
 #celsiusButton:hover {
   color: blue;

@@ -63,12 +63,18 @@ function geolocal(event) {
         event.preventDefault();
         let fahrenheitButton = document.querySelector("#fahrenheitButton");
         let celsiusButton = document.querySelector("#celsiusButton");
-        h2.innerHTML = `${temperature + 32}`;
+        h2.innerHTML = `${temperature * 1.8 + 32}`;
         fahrenheitButton.innerHTML = `<button id="fahrenheitButton"><strong>F</strong></button>`;
         celsiusButton.innerHTML = `<button id="celsiusButton">C /</button>`;
       }
-      function changeToCel() {
-        window.location.reload();
+      function changeToCel(event) {
+        event.preventDefault();
+        let fahrenheitButton = document.querySelector("#fahrenheitButton");
+        let celsiusButton = document.querySelector("#celsiusButton");
+        h2.innerHTML = `${temperature}`;
+        console.log(temperature);
+        fahrenheitButton.innerHTML = `<button id="fahrenheitButton">F</button>`;
+        celsiusButton.innerHTML = `<button id="celsiusButton"><strong>C</storng> /</button>`;
       }
       let tempC = document.querySelector("#celsiusButton");
       tempC.addEventListener("click", changeToCel);
