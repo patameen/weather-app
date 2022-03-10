@@ -79,11 +79,23 @@ function showPosition(position) {
 
     let apiKey = "7dfa514196d8ad8df497144d715c56b0";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
+    console.log(apiUrl);
 
     function showWeather(response) {
       let temperature = Math.round(response.data.main.temp);
+      let descriptionInfoSearched = response.data.weather[0].description;
+      let humidityInfoSearched = response.data.main.humidity;
+      let windInfoSearched = response.data.wind.speed;
       let h2 = document.querySelector("h2");
       h2.innerHTML = `${temperature}`;
+      let weatherDescriptionSearched = document.querySelector(
+        "#weather-description"
+      );
+      weatherDescriptionSearched.innerHTML = `${descriptionInfoSearched}`;
+      let humiditySearched = document.querySelector("#humidity");
+      humiditySearched.innerHTML = `${humidityInfoSearched}`;
+      let windSearched = document.querySelector("#wind");
+      windSearched.innerHTML = `${Math.round(windInfoSearched)}`;
     }
     axios.get(apiUrl).then(showWeather);
   }
