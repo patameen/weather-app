@@ -74,14 +74,15 @@ function showPosition(position) {
   function changeCity(event) {
     event.preventDefault();
     let citySearch = document.querySelector("#enter-city");
-    let cityName = document.querySelector("h1");
-    cityName.innerHTML = `${citySearch.value}`;
 
     let apiKey = "7dfa514196d8ad8df497144d715c56b0";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
     console.log(apiUrl);
 
     function showWeather(response) {
+      let cityName = document.querySelector("h1");
+      cityName.innerHTML = `${response.data.name}`;
+
       let temperature = Math.round(response.data.main.temp);
       let descriptionInfoSearched = response.data.weather[0].description;
       let humidityInfoSearched = response.data.main.humidity;
