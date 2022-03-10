@@ -26,6 +26,9 @@ footer {
   color: blue;
   cursor: pointer;
 }
+#weather-description:first-letter {
+  text-transform: capitalize;
+}
 #enter-city {
   max-width: 200px;
   min-width: 100px;

@@ -19,25 +19,6 @@ formatDate(new Date());
 //Search city, show in h1 and temperature in h2
 //Note to self:Still need .trim() in case of searching spaces!!!
 
-function changeCity(event) {
-  event.preventDefault();
-  let citySearch = document.querySelector("#enter-city");
-  let cityName = document.querySelector("h1");
-  cityName.innerHTML = `${citySearch.value}`;
-
-  let apiKey = "7dfa514196d8ad8df497144d715c56b0";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
-
-  function showWeather(response) {
-    let temperature = Math.round(response.data.main.temp);
-    let h2 = document.querySelector("h2");
-    h2.innerHTML = `${temperature}`;
-  }
-  axios.get(apiUrl).then(showWeather);
-}
-let cityInfo = document.querySelector("#city-form");
-cityInfo.addEventListener("submit", changeCity);
-//Geolocation after pressing arrow
 function geolocal(event) {
   event.preventDefault();
 
@@ -54,10 +35,14 @@ function geolocal(event) {
       console.log(temperature);
       let locationCity = response.data.name;
       console.log(locationCity);
+      let weatherDescription = response.data.weather[0].description;
+      console.log(weatherDescription);
       let h1 = document.querySelector("h1");
       h1.innerHTML = `${locationCity}`;
       let h2 = document.querySelector("h2");
       h2.innerHTML = `${temperature}`;
+      let description = document.querySelector("#weather-description");
+      description.innerHTML = `${weatherDescription}`;
 
       function changeToFah(event) {
         event.preventDefault();
@@ -81,6 +66,26 @@ function geolocal(event) {
       let tempF = document.querySelector("#fahrenheitButton");
       tempF.addEventListener("click", changeToFah);
     }
+
+    function changeCity(event) {
+      event.preventDefault();
+      let citySearch = document.querySelector("#enter-city");
+      let cityName = document.querySelector("h1");
+      cityName.innerHTML = `${citySearch.value}`;
+
+      let apiKey = "7dfa514196d8ad8df497144d715c56b0";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
+
+      function showWeather(response) {
+        let temperature = Math.round(response.data.main.temp);
+        let h2 = document.querySelector("h2");
+        h2.innerHTML = `${temperature}`;
+      }
+      axios.get(apiUrl).then(showWeather);
+    }
+    let cityInfo = document.querySelector("#city-form");
+    cityInfo.addEventListener("submit", changeCity);
+    //Geolocation after pressing arrow
 
     axios.get(apiUrl).then(showTemp);
   }
