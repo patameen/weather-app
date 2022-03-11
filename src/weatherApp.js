@@ -46,7 +46,7 @@ function showPosition(position) {
       event.preventDefault();
       let fahrenheitButton = document.querySelector("#fahrenheitButton");
       let celsiusButton = document.querySelector("#celsiusButton");
-      h2.innerHTML = `${temperature * 1.8 + 32}`;
+      h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}`;
       fahrenheitButton.innerHTML = `<button id="fahrenheitButton"><strong>F</strong></button>`;
       celsiusButton.innerHTML = `<button id="celsiusButton">C /</button>`;
     }
@@ -113,6 +113,27 @@ function showPosition(position) {
         "en-US",
         options
       )}`;
+      function changeToFah(event) {
+        event.preventDefault();
+        let fahrenheitButton = document.querySelector("#fahrenheitButton");
+        let celsiusButton = document.querySelector("#celsiusButton");
+        h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}`;
+        fahrenheitButton.innerHTML = `<button id="fahrenheitButton"><strong>F</strong></button>`;
+        celsiusButton.innerHTML = `<button id="celsiusButton">C /</button>`;
+      }
+      function changeToCel(event) {
+        event.preventDefault();
+        let fahrenheitButton = document.querySelector("#fahrenheitButton");
+        let celsiusButton = document.querySelector("#celsiusButton");
+        h2.innerHTML = `${temperature}`;
+
+        fahrenheitButton.innerHTML = `<button id="fahrenheitButton">F</button>`;
+        celsiusButton.innerHTML = `<button id="celsiusButton"><strong>C</storng> /</button>`;
+      }
+      let tempC = document.querySelector("#celsiusButton");
+      tempC.addEventListener("click", changeToCel);
+      let tempF = document.querySelector("#fahrenheitButton");
+      tempF.addEventListener("click", changeToFah);
     }
     axios.get(apiUrl).then(showWeather);
   }
