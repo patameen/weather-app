@@ -6,11 +6,8 @@ function showPosition(position) {
 
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp);
-
     let locationCity = response.data.name;
-
     let weatherDescription = response.data.weather[0].description;
-
     let humidity = response.data.main.humidity;
     let wind = response.data.wind.speed;
     let mainIcon = response.data.weather[0].icon;
@@ -25,29 +22,15 @@ function showPosition(position) {
     humidityInfo.innerHTML = `${humidity}`;
     let windInfo = document.querySelector("#wind");
     windInfo.innerHTML = `${Math.round(wind)}`;
-    console.log(response.data.weather[0].icon);
-
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
     );
     let localTimeZone = response.data.timezone / 3600;
-
-    // create Date object for current location
     var d = new Date();
-
-    // convert to msec
-    // add local time zone offset
-    // get UTC time in msec
     var utc = d.getTime() + d.getTimezoneOffset() * 60000;
-
-    // create new Date object for different city
-    // using supplied offset
     var nd = new Date(utc + 3600000 * localTimeZone);
-
-    // return time as a string
-
     let localTime = document.querySelector("#local-time");
     let options = {
       weekday: "long",
@@ -85,7 +68,6 @@ function showPosition(position) {
   function changeCity(event) {
     event.preventDefault();
     let citySearch = document.querySelector("#enter-city");
-
     let apiKey = "7dfa514196d8ad8df497144d715c56b0";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
 
@@ -115,23 +97,10 @@ function showPosition(position) {
       windSearched.innerHTML = `${Math.round(windInfoSearched)}`;
 
       let localTimeZoneSearched = response.data.timezone / 3600;
-
-      // create Date object for current location
       var d = new Date();
-
-      // convert to msec
-      // add local time zone offset
-      // get UTC time in msec
       var utc = d.getTime() + d.getTimezoneOffset() * 60000;
-
-      // create new Date object for different city
-      // using supplied offset
       var nd = new Date(utc + 3600000 * localTimeZoneSearched);
-
-      // return time as a string
-
       let localTimeSearched = document.querySelector("#local-time");
-
       let options = {
         weekday: "long",
         month: "long",
@@ -149,7 +118,6 @@ function showPosition(position) {
   }
   let cityInfo = document.querySelector("#city-form");
   cityInfo.addEventListener("submit", changeCity);
-  //Geolocation after pressing arrow
 
   axios.get(apiUrl).then(showTemp);
 }
