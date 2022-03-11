@@ -1,24 +1,3 @@
-function formatDate() {
-  let time = document.querySelector("h3");
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let now = new Date();
-  let day = days[now.getDay()];
-  let hours = now.getHours();
-  let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
-  time.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
-}
-formatDate(new Date());
-//Search city, show in h1 and temperature in h2
-//Note to self:Still need .trim() in case of searching spaces!!!
-
 function showPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
