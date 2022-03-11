@@ -75,7 +75,15 @@ function showPosition(position) {
     // return time as a string
     console.log(nd.toLocaleString());
     let localTime = document.querySelector("#local-time");
-    localTime.innerHTML = `Local Time: ${nd.toLocaleString()}`;
+    let options = {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hourCycle: "h24",
+    };
+    localTime.innerHTML = `Local Time: ${nd.toLocaleString("en-US", options)}`;
 
     function changeToFah(event) {
       event.preventDefault();
@@ -153,7 +161,19 @@ function showPosition(position) {
       // return time as a string
       console.log(nd.toLocaleString());
       let localTimeSearched = document.querySelector("#local-time");
-      localTimeSearched.innerHTML = `Local Time: ${nd.toLocaleString()}`;
+
+      let options = {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hourCycle: "h24",
+      };
+      localTimeSearched.innerHTML = `Local Time: ${nd.toLocaleString(
+        "en-US",
+        options
+      )}`;
     }
     axios.get(apiUrl).then(showWeather);
   }
