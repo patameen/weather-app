@@ -3,16 +3,14 @@ function showPosition(position) {
   let longitude = position.coords.longitude;
   let key = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
-  console.log(apiUrl);
-  console.log(latitude);
-  console.log(longitude);
+
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp);
-    console.log(temperature);
+
     let locationCity = response.data.name;
-    console.log(locationCity);
+
     let weatherDescription = response.data.weather[0].description;
-    console.log(weatherDescription);
+
     let humidity = response.data.main.humidity;
     let wind = response.data.wind.speed;
     let mainIcon = response.data.weather[0].icon;
@@ -35,7 +33,6 @@ function showPosition(position) {
       `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
     );
     let localTimeZone = response.data.timezone / 3600;
-    console.log(localTimeZone);
 
     // create Date object for current location
     var d = new Date();
@@ -44,15 +41,13 @@ function showPosition(position) {
     // add local time zone offset
     // get UTC time in msec
     var utc = d.getTime() + d.getTimezoneOffset() * 60000;
-    console.log(utc);
 
     // create new Date object for different city
     // using supplied offset
     var nd = new Date(utc + 3600000 * localTimeZone);
-    console.log(nd);
 
     // return time as a string
-    console.log(nd.toLocaleString());
+
     let localTime = document.querySelector("#local-time");
     let options = {
       weekday: "long",
@@ -77,7 +72,7 @@ function showPosition(position) {
       let fahrenheitButton = document.querySelector("#fahrenheitButton");
       let celsiusButton = document.querySelector("#celsiusButton");
       h2.innerHTML = `${temperature}`;
-      console.log(temperature);
+
       fahrenheitButton.innerHTML = `<button id="fahrenheitButton">F</button>`;
       celsiusButton.innerHTML = `<button id="celsiusButton"><strong>C</storng> /</button>`;
     }
@@ -93,7 +88,6 @@ function showPosition(position) {
 
     let apiKey = "7dfa514196d8ad8df497144d715c56b0";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
-    console.log(apiUrl);
 
     function showWeather(response) {
       let cityName = document.querySelector("h1");
@@ -121,7 +115,6 @@ function showPosition(position) {
       windSearched.innerHTML = `${Math.round(windInfoSearched)}`;
 
       let localTimeZoneSearched = response.data.timezone / 3600;
-      console.log(localTimeZoneSearched);
 
       // create Date object for current location
       var d = new Date();
@@ -130,15 +123,13 @@ function showPosition(position) {
       // add local time zone offset
       // get UTC time in msec
       var utc = d.getTime() + d.getTimezoneOffset() * 60000;
-      console.log(utc);
 
       // create new Date object for different city
       // using supplied offset
       var nd = new Date(utc + 3600000 * localTimeZoneSearched);
-      console.log(nd);
 
       // return time as a string
-      console.log(nd.toLocaleString());
+
       let localTimeSearched = document.querySelector("#local-time");
 
       let options = {
