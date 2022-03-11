@@ -15,7 +15,7 @@ function showPosition(position) {
     let h1 = document.querySelector("h1");
     h1.innerHTML = `${locationCity}`;
     let h2 = document.querySelector("h2");
-    h2.innerHTML = `${temperature}`;
+    h2.innerHTML = `${temperature}°`;
     let description = document.querySelector("#weather-description");
     description.innerHTML = `${weatherDescription}`;
     let humidityInfo = document.querySelector("#humidity");
@@ -40,24 +40,27 @@ function showPosition(position) {
       minute: "numeric",
       hourCycle: "h24",
     };
-    localTime.innerHTML = `Local Time: ${nd.toLocaleString("en-US", options)}`;
+    localTime.innerHTML = `Time in ${response.data.name}: ${nd.toLocaleString(
+      "en-US",
+      options
+    )}`;
 
     function changeToFah(event) {
       event.preventDefault();
       let fahrenheitButton = document.querySelector("#fahrenheitButton");
       let celsiusButton = document.querySelector("#celsiusButton");
-      h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}`;
-      fahrenheitButton.innerHTML = `<button id="fahrenheitButton"><strong>F</strong></button>`;
-      celsiusButton.innerHTML = `<button id="celsiusButton">C /</button>`;
+      h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}°`;
+      fahrenheitButton.innerHTML = `<button id="fahrenheit-button"><strong>F</strong></button>`;
+      celsiusButton.innerHTML = `<button id="celsius-button">C</button>`;
     }
     function changeToCel(event) {
       event.preventDefault();
       let fahrenheitButton = document.querySelector("#fahrenheitButton");
       let celsiusButton = document.querySelector("#celsiusButton");
-      h2.innerHTML = `${temperature}`;
+      h2.innerHTML = `${temperature}°`;
 
-      fahrenheitButton.innerHTML = `<button id="fahrenheitButton">F</button>`;
-      celsiusButton.innerHTML = `<button id="celsiusButton"><strong>C</storng> /</button>`;
+      fahrenheitButton.innerHTML = `<button id="fahrenheit-button">F</button>`;
+      celsiusButton.innerHTML = `<button id="celsius-button"><strong>C</storng></button>`;
     }
     let tempC = document.querySelector("#celsiusButton");
     tempC.addEventListener("click", changeToCel);
@@ -86,7 +89,7 @@ function showPosition(position) {
       let humidityInfoSearched = response.data.main.humidity;
       let windInfoSearched = response.data.wind.speed;
       let h2 = document.querySelector("h2");
-      h2.innerHTML = `${temperature}`;
+      h2.innerHTML = `${temperature}°`;
       let weatherDescriptionSearched = document.querySelector(
         "#weather-description"
       );
@@ -109,26 +112,25 @@ function showPosition(position) {
         minute: "numeric",
         hourCycle: "h24",
       };
-      localTimeSearched.innerHTML = `Local Time: ${nd.toLocaleString(
-        "en-US",
-        options
-      )}`;
+      localTimeSearched.innerHTML = `Time in ${
+        response.data.name
+      }: ${nd.toLocaleString("en-US", options)}`;
       function changeToFah(event) {
         event.preventDefault();
         let fahrenheitButton = document.querySelector("#fahrenheitButton");
         let celsiusButton = document.querySelector("#celsiusButton");
-        h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}`;
-        fahrenheitButton.innerHTML = `<button id="fahrenheitButton"><strong>F</strong></button>`;
-        celsiusButton.innerHTML = `<button id="celsiusButton">C /</button>`;
+        h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}°`;
+        fahrenheitButton.innerHTML = `<button id="fahrenheit-button"><strong>F</strong></button>`;
+        celsiusButton.innerHTML = `<button id="celsius-button">C</button>`;
       }
       function changeToCel(event) {
         event.preventDefault();
         let fahrenheitButton = document.querySelector("#fahrenheitButton");
         let celsiusButton = document.querySelector("#celsiusButton");
-        h2.innerHTML = `${temperature}`;
+        h2.innerHTML = `${temperature}°`;
 
-        fahrenheitButton.innerHTML = `<button id="fahrenheitButton">F</button>`;
-        celsiusButton.innerHTML = `<button id="celsiusButton"><strong>C</storng> /</button>`;
+        fahrenheitButton.innerHTML = `<button id="fahrenheit-button">F</button>`;
+        celsiusButton.innerHTML = `<button id="celsius-button"><strong>C</storng></button>`;
       }
       let tempC = document.querySelector("#celsiusButton");
       tempC.addEventListener("click", changeToCel);
