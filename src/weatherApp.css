@@ -9,6 +9,7 @@ h1 {
 }
 h2 {
   display: inline;
+  font-size: 40px;
 }
 button {
   border: none;
@@ -45,13 +46,26 @@ footer {
   bottom: 2px;
   font-size: 12px;
 }
+#celsiusButton,
+#fahrenheitButton,
+#slash {
+  position: relative;
+  bottom: 20px;
+  font-size: 16px;
+}
+#fahrenheit-button,
+#celsius-button {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
 #celsiusButton:hover {
   color: blue;
-  text-decoration: underline;
+  text-decoration: none;
 }
 #fahrenheitButton:hover {
   color: blue;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .card {
   background: lightcyan;
