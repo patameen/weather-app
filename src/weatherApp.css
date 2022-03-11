@@ -10,6 +10,9 @@ h1 {
 h2 {
   display: inline;
 }
+h3 {
+  font-size: 19px;
+}
 button {
   border: none;
   background: none;

@@ -13,7 +13,7 @@ function formatDate() {
   let day = days[now.getDay()];
   let hours = now.getHours();
   let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
-  time.innerHTML = `${day} ${hours}:${minutes}`;
+  time.innerHTML = `Last updated: ${day} ${hours}:${minutes}`;
 }
 formatDate(new Date());
 //Search city, show in h1 and temperature in h2
@@ -55,6 +55,27 @@ function showPosition(position) {
       "src",
       `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
     );
+    let localTimeZone = response.data.timezone / 3600;
+    console.log(localTimeZone);
+
+    // create Date object for current location
+    var d = new Date();
+
+    // convert to msec
+    // add local time zone offset
+    // get UTC time in msec
+    var utc = d.getTime() + d.getTimezoneOffset() * 60000;
+    console.log(utc);
+
+    // create new Date object for different city
+    // using supplied offset
+    var nd = new Date(utc + 3600000 * localTimeZone);
+    console.log(nd);
+
+    // return time as a string
+    console.log(nd.toLocaleString());
+    let localTime = document.querySelector("#local-time");
+    localTime.innerHTML = `Local Time: ${nd.toLocaleString()}`;
 
     function changeToFah(event) {
       event.preventDefault();
@@ -111,6 +132,28 @@ function showPosition(position) {
       humiditySearched.innerHTML = `${humidityInfoSearched}`;
       let windSearched = document.querySelector("#wind");
       windSearched.innerHTML = `${Math.round(windInfoSearched)}`;
+
+      let localTimeZoneSearched = response.data.timezone / 3600;
+      console.log(localTimeZoneSearched);
+
+      // create Date object for current location
+      var d = new Date();
+
+      // convert to msec
+      // add local time zone offset
+      // get UTC time in msec
+      var utc = d.getTime() + d.getTimezoneOffset() * 60000;
+      console.log(utc);
+
+      // create new Date object for different city
+      // using supplied offset
+      var nd = new Date(utc + 3600000 * localTimeZoneSearched);
+      console.log(nd);
+
+      // return time as a string
+      console.log(nd.toLocaleString());
+      let localTimeSearched = document.querySelector("#local-time");
+      localTimeSearched.innerHTML = `Local Time: ${nd.toLocaleString()}`;
     }
     axios.get(apiUrl).then(showWeather);
   }
