@@ -40,10 +40,7 @@ function showPosition(position) {
       minute: "numeric",
       hourCycle: "h24",
     };
-    localTime.innerHTML = `Time in ${response.data.name}: ${nd.toLocaleString(
-      "en-US",
-      options
-    )}`;
+    localTime.innerHTML = `${nd.toLocaleString("en-US", options)}`;
 
     function changeToFah(event) {
       event.preventDefault();
@@ -112,9 +109,7 @@ function showPosition(position) {
         minute: "numeric",
         hourCycle: "h24",
       };
-      localTimeSearched.innerHTML = `Time in ${
-        response.data.name
-      }: ${nd.toLocaleString("en-US", options)}`;
+      localTimeSearched.innerHTML = `${nd.toLocaleString("en-US", options)}`;
       function changeToFah(event) {
         event.preventDefault();
         let fahrenheitButton = document.querySelector("#fahrenheitButton");

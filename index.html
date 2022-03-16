@@ -18,11 +18,10 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1>Riga </h1><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" id="icon" >
+          <h1>Riga </h1>
           <p id="local-time"></p>
-          <p id="weather-description"></p>
         </div>
-        <div class="col-5 searchEn">
+          <div class="col-5 searchEn">
          <form  id="city-form">
             <div class="mb-3">
               <button id="location-now">➤</button>
@@ -39,21 +38,32 @@
           </form>
         </div>
       </div>
-      <br />
-      <div class="row">
-        <div class="col">
-          <h2>19</h2>
+          
+          
+         <div class="row">
+        <div class="col-2">
+           <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" id="icon" >
+        </div>
+          <div class="col-3">
+           <h2>19</h2>
+           
           <button id="celsiusButton"><strong>C</strong></button><span id="slash">|</span>
           <button id="fahrenheitButton">F</button>
-          <p>Humidity <span id="humidity">95</span>%</p>
+          <p id="weather-description"></p>
+          
+          </div>
+          
+<div class="col-4">
+<p>Humidity <span id="humidity">95</span>%</p>
           <p>Wind <span id="wind">1</span> km/h</p>
-        
         </div>
-        <div class="col-sm-8">
-          <div class="card">
-            <div class="card-body">
+    </div>
+        
+      
+      <br />
+      
               <div class="row">
-                <div class="col day">
+                <div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
@@ -65,7 +75,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col day">
+                <div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
@@ -77,7 +87,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col day">
+                <div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
@@ -89,7 +99,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col day">
+                <div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
@@ -101,7 +111,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col day">
+                <div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
@@ -113,7 +123,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col day">
+                <div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
@@ -124,10 +134,7 @@
                       <p class="card-text">13/10°C</p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>    
+                 
         </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ body {
   min-width: none;
 }
 h1 {
-  font-size: 80px;
+  font-size: 60px;
   display: inline;
 }
 h2 {
@@ -21,12 +21,16 @@ footer {
   text-align: center;
 }
 #icon {
-  margin-bottom: 35px;
+  position: relative;
+  bottom: 20px;
+  padding: 0;
 }
 #location-now {
-  font-size: 24px;
+  font-size: 20px;
   display: inline;
   transform: rotate(-40deg);
+  margin: 0;
+  padding: 0;
 }
 #location-now:hover {
   color: blue;
@@ -37,7 +41,7 @@ footer {
 }
 #enter-city {
   max-width: 200px;
-  min-width: 100px;
+  width: 100px;
   display: inline;
   margin: 0 10px;
 }
@@ -71,7 +75,7 @@ footer {
   background: lightcyan;
 }
 .container {
-  width: 1000px;
+  width: 600px;
   border: 4px solid blue;
   border-radius: 10px;
   background: lightblue;
@@ -89,6 +93,7 @@ footer {
 .nextDay {
   display: inline-block;
   padding: 15px 0;
+  width: 80px;
   background: white;
 }
 .nextDay:hover {
