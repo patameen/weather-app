@@ -3,6 +3,7 @@ function showPosition(position) {
   let longitude = position.coords.longitude;
   let key = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
+  console.log(apiUrl);
 
   function showTemp(response) {
     let temperature = Math.round(response.data.main.temp);
@@ -11,9 +12,13 @@ function showPosition(position) {
     let humidity = response.data.main.humidity;
     let wind = response.data.wind.speed;
     let mainIcon = response.data.weather[0].icon;
+    let country = response.data.sys.country;
+    let pressure = response.data.main.pressure;
 
     let h1 = document.querySelector("h1");
     h1.innerHTML = `${locationCity}`;
+    let locationCountry = document.querySelector("#country");
+    locationCountry.innerHTML = `${country}`;
     let h2 = document.querySelector("h2");
     h2.innerHTML = `${temperature}°`;
     let description = document.querySelector("#weather-description");
@@ -22,10 +27,12 @@ function showPosition(position) {
     humidityInfo.innerHTML = `${humidity}`;
     let windInfo = document.querySelector("#wind");
     windInfo.innerHTML = `${Math.round(wind)}`;
+    let pressureInfo = document.querySelector("#pressure");
+    pressureInfo.innerHTML = `${pressure}`;
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute(
       "src",
-      `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
+      `https://openweathermap.org/img/wn/${mainIcon}@2x.png`
     );
     let localTimeZone = response.data.timezone / 3600;
     var d = new Date();
@@ -70,7 +77,7 @@ function showPosition(position) {
     let citySearch = document.querySelector("#enter-city");
     let apiKey = "7dfa514196d8ad8df497144d715c56b0";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
-
+    console.log(apiUrl);
     function showWeather(response) {
       let cityName = document.querySelector("h1");
       cityName.innerHTML = `${response.data.name}`;
@@ -78,13 +85,17 @@ function showPosition(position) {
       let iconElement = document.querySelector("#icon");
       iconElement.setAttribute(
         "src",
-        `http://openweathermap.org/img/wn/${mainIcon}@2x.png`
+        `https://openweathermap.org/img/wn/${mainIcon}@2x.png`
       );
 
       let temperature = Math.round(response.data.main.temp);
       let descriptionInfoSearched = response.data.weather[0].description;
       let humidityInfoSearched = response.data.main.humidity;
       let windInfoSearched = response.data.wind.speed;
+      let country = response.data.sys.country;
+      let pressure = response.data.main.pressure;
+      let locationCountry = document.querySelector("#country");
+      locationCountry.innerHTML = `${country}`;
       let h2 = document.querySelector("h2");
       h2.innerHTML = `${temperature}°`;
       let weatherDescriptionSearched = document.querySelector(
@@ -95,7 +106,8 @@ function showPosition(position) {
       humiditySearched.innerHTML = `${humidityInfoSearched}`;
       let windSearched = document.querySelector("#wind");
       windSearched.innerHTML = `${Math.round(windInfoSearched)}`;
-
+      let pressureSearched = document.querySelector("#pressure");
+      pressureSearched.innerHTML = `${pressure}`;
       let localTimeZoneSearched = response.data.timezone / 3600;
       var d = new Date();
       var utc = d.getTime() + d.getTimezoneOffset() * 60000;
