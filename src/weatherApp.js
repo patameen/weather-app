@@ -8,6 +8,7 @@ function showTemp(response) {
   let country = response.data.sys.country;
   let pressure = response.data.main.pressure;
   let direction = response.data.wind.deg;
+  let conditionCode = response.data.weather[0].id;
 
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${locationCity}`;
@@ -57,6 +58,23 @@ function showTemp(response) {
   } else if (direction > 326.25 && direction < 348.75) {
     windDirection.innerHTML = `NNW `;
   }
+  let activity = document.querySelector("#suggested-activity");
+  if (conditionCode >= 200 && conditionCode <= 232) {
+    activity.innerHTML = `Good day to read a book!📖`;
+  } else if (conditionCode > 300 && conditionCode < 322) {
+    activity.innerHTML = `Good day to watch a movie!🎬`;
+  } else if (conditionCode >= 500 && conditionCode <= 531) {
+    activity.innerHTML = `Excellent weather to stay home!🧑🏼‍🎨`;
+  } else if (conditionCode >= 600 && conditionCode <= 622) {
+    activity.innerHTML = `Is it a good day for snow activity?🎿`;
+  } else if (conditionCode >= 701 && conditionCode <= 781) {
+    activity.innerHTML = `Weather outside might get interesting!🦄`;
+  } else if (conditionCode === 800) {
+    activity.innerHTML = `Great time for a jog! 🏃🏽`;
+  } else if (conditionCode >= 801 && conditionCode <= 804) {
+    activity.innerHTML = `Clouds never stopped nobody! ⚽️`;
+  }
+
   let pressureInfo = document.querySelector("#pressure");
   pressureInfo.innerHTML = `${pressure}`;
   let iconElement = document.querySelector("#icon");
