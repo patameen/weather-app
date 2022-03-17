@@ -23,7 +23,6 @@ function showTemp(response) {
   windInfo.innerHTML = `${Math.round(wind)}`;
 
   let windDirection = document.querySelector("#direction");
-  let windArrow = document.querySelector("#rotate-this");
 
   if (direction > 348.75 && direction < 11.25) {
     windDirection.innerHTML = `N `;
@@ -40,10 +39,9 @@ function showTemp(response) {
   } else if (direction > 123.75 && direction < 146.25) {
     windDirection.innerHTML = `SE `;
   } else if (direction > 146.25 && direction < 168.75) {
-    windDirection.innerHTML = `SSE `;
+    windDirection.innerHTML = `SSE  `;
   } else if (direction > 168.75 && direction < 191.25) {
     windDirection.innerHTML = `S `;
-    windArrow.innerHTML = `↑`;
   } else if (direction > 191.25 && direction < 213.75) {
     windDirection.innerHTML = `SSW `;
   } else if (direction > 213.75 && direction < 236.25) {
