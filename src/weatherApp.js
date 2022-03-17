@@ -48,7 +48,30 @@ function showPosition(position) {
       hourCycle: "h24",
     };
     localTime.innerHTML = `${nd.toLocaleString("en-US", options)}`;
-
+    function displayForecast() {
+      let forecastElement = document.querySelector("#forecast-day");
+      let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+      let forecastHTML = `<div class="row">`;
+      days.forEach(function (day) {
+        forecastHTML =
+          forecastHTML +
+          `<div class="col-2 day">
+                  <div
+                    class="card text-center nextDay"
+                    style="max-width: 100px; height: 10rem;"
+                  >
+                    <div class="card-body">
+                      <h5 class="card-title">${day}</h5>
+                      <p class="card-text"><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="day-icon" id="next-day-icon" width=50px></p>
+                      <p class="card-text"><span id="max-temp">13</span> | <span id="min-temp">10</span></p>
+                    </div>
+                  </div>
+                </div>`;
+      });
+      forecastHTML = forecastHTML + `</div>`;
+      forecastElement.innerHTML = forecastHTML;
+      console.log(forecastHTML);
+    }
     function changeToFah(event) {
       event.preventDefault();
       let fahrenheitButton = document.querySelector("#fahrenheitButton");
@@ -70,6 +93,7 @@ function showPosition(position) {
     tempC.addEventListener("click", changeToCel);
     let tempF = document.querySelector("#fahrenheitButton");
     tempF.addEventListener("click", changeToFah);
+    displayForecast();
   }
 
   function changeCity(event) {
@@ -144,8 +168,10 @@ function showPosition(position) {
       let tempF = document.querySelector("#fahrenheitButton");
       tempF.addEventListener("click", changeToFah);
     }
+
     axios.get(apiUrl).then(showWeather);
   }
+
   let cityInfo = document.querySelector("#city-form");
   cityInfo.addEventListener("submit", changeCity);
 
