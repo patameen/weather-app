@@ -7,6 +7,7 @@ function showTemp(response) {
   let mainIcon = response.data.weather[0].icon;
   let country = response.data.sys.country;
   let pressure = response.data.main.pressure;
+  let direction = response.data.wind.deg;
 
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${locationCity}`;
@@ -20,6 +21,44 @@ function showTemp(response) {
   humidityInfo.innerHTML = `${humidity}`;
   let windInfo = document.querySelector("#wind");
   windInfo.innerHTML = `${Math.round(wind)}`;
+
+  let windDirection = document.querySelector("#direction");
+  let windArrow = document.querySelector("#rotate-this");
+
+  if (direction > 348.75 && direction < 11.25) {
+    windDirection.innerHTML = `N `;
+  } else if (direction > 11.25 && direction < 33.75) {
+    windDirection.innerHTML = `NNE `;
+  } else if (direction > 33.75 && direction < 56.25) {
+    windDirection.innerHTML = `NE `;
+  } else if (direction > 56.25 && direction < 78.75) {
+    windDirection.innerHTML = `ENE `;
+  } else if (direction > 78.75 && direction < 101.25) {
+    windDirection.innerHTML = `E `;
+  } else if (direction > 101.25 && direction < 123.75) {
+    windDirection.innerHTML = `ESE `;
+  } else if (direction > 123.75 && direction < 146.25) {
+    windDirection.innerHTML = `SE `;
+  } else if (direction > 146.25 && direction < 168.75) {
+    windDirection.innerHTML = `SSE `;
+  } else if (direction > 168.75 && direction < 191.25) {
+    windDirection.innerHTML = `S `;
+    windArrow.innerHTML = `↑`;
+  } else if (direction > 191.25 && direction < 213.75) {
+    windDirection.innerHTML = `SSW `;
+  } else if (direction > 213.75 && direction < 236.25) {
+    windDirection.innerHTML = `SW `;
+  } else if (direction > 236.25 && direction < 258.75) {
+    windDirection.innerHTML = `WSW `;
+  } else if (direction > 258.75 && direction < 281.25) {
+    windDirection.innerHTML = `W `;
+  } else if (direction > 281.25 && direction < 303.75) {
+    windDirection.innerHTML = `WNW `;
+  } else if (direction > 303.75 && direction < 326.25) {
+    windDirection.innerHTML = `NW `;
+  } else if (direction > 326.25 && direction < 348.75) {
+    windDirection.innerHTML = `NNW `;
+  }
   let pressureInfo = document.querySelector("#pressure");
   pressureInfo.innerHTML = `${pressure}`;
   let iconElement = document.querySelector("#icon");
