@@ -118,9 +118,10 @@ function showTemp(response) {
   tempC.addEventListener("click", changeToCel);
   let tempF = document.querySelector("#fahrenheitButton");
   tempF.addEventListener("click", changeToFah);
+  getForecast(response.data.coord);
 }
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast-day");
   let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
   let forecastHTML = `<div class="row">`;
@@ -142,6 +143,13 @@ function displayForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+  console.log(response.data.daily);
+}
+function getForecast(coordinates) {
+  let key = "7dfa514196d8ad8df497144d715c56b0";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&&appid=${key}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showPosition(position) {
@@ -150,7 +158,6 @@ function showPosition(position) {
   let key = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
   console.log(apiUrl);
-  displayForecast();
   axios.get(apiUrl).then(showTemp);
 }
 
@@ -160,7 +167,7 @@ function changeCity(event) {
   let apiKey = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
   console.log(apiUrl);
-  displayForecast();
+
   axios.get(apiUrl).then(showTemp);
 }
 
