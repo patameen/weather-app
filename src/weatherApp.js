@@ -66,9 +66,9 @@ function showTemp(response) {
   } else if (conditionCode >= 500 && conditionCode <= 531) {
     activity.innerHTML = `Excellent weather to stay home!🧑🏼‍🎨`;
   } else if (conditionCode >= 600 && conditionCode <= 622) {
-    activity.innerHTML = `Is it a good day for snow activity?🎿`;
+    activity.innerHTML = `A good day for snow activity?🎿`;
   } else if (conditionCode >= 701 && conditionCode <= 781) {
-    activity.innerHTML = `Weather outside might get interesting!🦄`;
+    activity.innerHTML = `Weather might get interesting!🦄`;
   } else if (conditionCode === 800) {
     activity.innerHTML = `Great time for a jog! 🏃🏽`;
   } else if (conditionCode >= 801 && conditionCode <= 804) {
