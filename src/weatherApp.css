@@ -21,7 +21,7 @@ footer {
   text-align: center;
 }
 p {
-  margin: 2px;
+  margin: 0;
 }
 #icon {
   position: relative;
@@ -77,6 +77,7 @@ p {
 #max-temp,
 #min-temp {
   font-size: 13px;
+  display: inline;
 }
 #min-temp {
   opacity: 0.7;

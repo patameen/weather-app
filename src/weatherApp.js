@@ -97,27 +97,6 @@ function showTemp(response) {
   };
   localTime.innerHTML = `${nd.toLocaleString("en-US", options)}`;
 
-  function changeToFah(event) {
-    event.preventDefault();
-    let fahrenheitButton = document.querySelector("#fahrenheitButton");
-    let celsiusButton = document.querySelector("#celsiusButton");
-    h2.innerHTML = `${Math.round(temperature * 1.8 + 32)}°`;
-    fahrenheitButton.innerHTML = `<button id="fahrenheit-button"><strong>F</strong></button>`;
-    celsiusButton.innerHTML = `<button id="celsius-button">C</button>`;
-  }
-  function changeToCel(event) {
-    event.preventDefault();
-    let fahrenheitButton = document.querySelector("#fahrenheitButton");
-    let celsiusButton = document.querySelector("#celsiusButton");
-    h2.innerHTML = `${temperature}°`;
-
-    fahrenheitButton.innerHTML = `<button id="fahrenheit-button">F</button>`;
-    celsiusButton.innerHTML = `<button id="celsius-button"><strong>C</storng></button>`;
-  }
-  let tempC = document.querySelector("#celsiusButton");
-  tempC.addEventListener("click", changeToCel);
-  let tempF = document.querySelector("#fahrenheitButton");
-  tempF.addEventListener("click", changeToFah);
   getForecast(response.data.coord);
 }
 
@@ -160,6 +139,60 @@ function displayForecast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
   console.log(response.data.daily);
+  console.log(forecast[0].temp.day);
+
+  function changeToFah(event) {
+    event.preventDefault();
+    let h2 = document.querySelector("h2");
+    let fahrenheitButton = document.querySelector("#fahrenheitButton");
+    let celsiusButton = document.querySelector("#celsiusButton");
+    h2.innerHTML = `${Math.round(forecast[0].temp.day * 1.8 + 32)}°`;
+    fahrenheitButton.innerHTML = `<button id="fahrenheit-button"><strong>F</strong></button>`;
+    celsiusButton.innerHTML = `<button id="celsius-button">C</button>`;
+    let forecastHTML = `<div class="row">`;
+    forecast.forEach(function (forecastDay, index) {
+      if (index < 7 && index > 0) {
+        forecastHTML =
+          forecastHTML +
+          `<div class="col-2 day">
+                  <div
+                    class="card nextDay"
+                    style="max-width: 100px; height: 10rem;"
+                  >
+                    <div class="card-body">
+                      <h5 class="card-title text-center">${formatDay(
+                        forecastDay.dt
+                      )}</h5>
+                      <p class="card-text"><img src="https://openweathermap.org/img/wn/${
+                        forecastDay.weather[0].icon
+                      }@2x.png" alt="day-icon" id="next-day-icon" width=50px></p>
+                      <p class="card-text"><span id="max-temp">${Math.round(
+                        forecastDay.temp.max * 1.8 + 32
+                      )}</span> | <span id="min-temp">${Math.round(
+            forecastDay.temp.min * 1.8 + 32
+          )}</span></p>
+                    </div>
+                  </div>
+                </div>`;
+      }
+    });
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+  }
+  function changeToCel(event) {
+    event.preventDefault();
+    let h2 = document.querySelector("h2");
+    let fahrenheitButton = document.querySelector("#fahrenheitButton");
+    let celsiusButton = document.querySelector("#celsiusButton");
+    h2.innerHTML = `${Math.round(forecast[0].temp.day)}°`;
+    displayForecast(response);
+    fahrenheitButton.innerHTML = `<button id="fahrenheit-button">F</button>`;
+    celsiusButton.innerHTML = `<button id="celsius-button"><strong>C</storng></button>`;
+  }
+  let tempC = document.querySelector("#celsiusButton");
+  tempC.addEventListener("click", changeToCel);
+  let tempF = document.querySelector("#fahrenheitButton");
+  tempF.addEventListener("click", changeToFah);
 }
 function getForecast(coordinates) {
   let key = "7dfa514196d8ad8df497144d715c56b0";
