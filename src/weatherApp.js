@@ -121,25 +121,41 @@ function showTemp(response) {
   getForecast(response.data.coord);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast-day");
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+
+  let forecast = response.data.daily;
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2 day">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 7 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2 day">
                   <div
                     class="card text-center nextDay"
                     style="max-width: 100px; height: 10rem;"
                   >
                     <div class="card-body">
-                      <h5 class="card-title">${day}</h5>
-                      <p class="card-text"><img src="http://openweathermap.org/img/wn/01d@2x.png" alt="day-icon" id="next-day-icon" width=50px></p>
-                      <p class="card-text"><span id="max-temp">13</span> | <span id="min-temp">10</span></p>
+                      <h5 class="card-title">${formatDay(forecastDay.dt)}</h5>
+                      <p class="card-text"><img src="https://openweathermap.org/img/wn/${
+                        forecastDay.weather[0].icon
+                      }@2x.png" alt="day-icon" id="next-day-icon" width=50px></p>
+                      <p class="card-text"><span id="max-temp">${Math.round(
+                        forecastDay.temp.max
+                      )}</span> | <span id="min-temp">${Math.round(
+          forecastDay.temp.min
+        )}</span></p>
                     </div>
                   </div>
                 </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
