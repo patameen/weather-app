@@ -84,6 +84,18 @@ p {
 #min-temp {
   opacity: 0.7;
 }
+#more-info {
+  text-decoration: none;
+  font-size: 14px;
+  color: grey;
+}
+#more-info:hover {
+  color: #e8630a;
+}
+#comment {
+  text-decoration: none;
+  color: #8a3902;
+}
 .btn {
   background: #e8630a;
   border: none;

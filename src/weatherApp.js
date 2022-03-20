@@ -96,7 +96,11 @@ function showTemp(response) {
     hourCycle: "h24",
   };
   localTime.innerHTML = `${nd.toLocaleString("en-US", options)}`;
-
+  let moreInfo = document.querySelector("#more-info");
+  moreInfo.setAttribute(
+    "href",
+    `https://www.google.com/search?q=weather+in+${response.data.name}`
+  );
   getForecast(response.data.coord);
 }
 
