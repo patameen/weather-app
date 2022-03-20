@@ -74,6 +74,29 @@ function showTemp(response) {
   } else if (conditionCode >= 801 && conditionCode <= 804) {
     activity.innerHTML = `Clouds never stopped nobody! ⚽️`;
   }
+  function changeToFah(event) {
+    event.preventDefault();
+    let h2 = document.querySelector("h2");
+    let fahrenheitButton = document.querySelector("#fahrenheitButton");
+    let celsiusButton = document.querySelector("#celsiusButton");
+    h2.innerHTML = `${Math.round(response.data.main.temp * 1.8 + 32)}°`;
+    fahrenheitButton.innerHTML = `<button id="fahrenheit-button"><strong>F</strong></button>`;
+    celsiusButton.innerHTML = `<button id="celsius-button">C</button>`;
+  }
+  function changeToCel(event) {
+    event.preventDefault();
+    let h2 = document.querySelector("h2");
+    let fahrenheitButton = document.querySelector("#fahrenheitButton");
+    let celsiusButton = document.querySelector("#celsiusButton");
+    h2.innerHTML = `${Math.round(response.data.main.temp)}°`;
+
+    fahrenheitButton.innerHTML = `<button id="fahrenheit-button">F</button>`;
+    celsiusButton.innerHTML = `<button id="celsius-button"><strong>C</storng></button>`;
+  }
+  let tempC = document.querySelector("#celsiusButton");
+  tempC.addEventListener("click", changeToCel);
+  let tempF = document.querySelector("#fahrenheitButton");
+  tempF.addEventListener("click", changeToFah);
 
   let pressureInfo = document.querySelector("#pressure");
   pressureInfo.innerHTML = `${pressure}`;
@@ -145,10 +168,8 @@ function displayForecast(response) {
 
   function changeToFah(event) {
     event.preventDefault();
-    let h2 = document.querySelector("h2");
     let fahrenheitButton = document.querySelector("#fahrenheitButton");
     let celsiusButton = document.querySelector("#celsiusButton");
-    h2.innerHTML = `${Math.round(forecast[0].temp.day * 1.8 + 32)}°`;
     fahrenheitButton.innerHTML = `<button id="fahrenheit-button"><strong>F</strong></button>`;
     celsiusButton.innerHTML = `<button id="celsius-button">C</button>`;
     let forecastHTML = `<div class="row">`;
@@ -183,10 +204,8 @@ function displayForecast(response) {
   }
   function changeToCel(event) {
     event.preventDefault();
-    let h2 = document.querySelector("h2");
     let fahrenheitButton = document.querySelector("#fahrenheitButton");
     let celsiusButton = document.querySelector("#celsiusButton");
-    h2.innerHTML = `${Math.round(forecast[0].temp.day)}°`;
     displayForecast(response);
     fahrenheitButton.innerHTML = `<button id="fahrenheit-button">F</button>`;
     celsiusButton.innerHTML = `<button id="celsius-button"><strong>C</storng></button>`;
