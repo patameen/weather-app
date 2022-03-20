@@ -142,8 +142,6 @@ function displayForecast(response) {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(response.data.daily);
-  console.log(forecast[0].temp.day);
 
   function changeToFah(event) {
     event.preventDefault();
@@ -201,7 +199,6 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   let key = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&&appid=${key}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -210,7 +207,6 @@ function showPosition(position) {
   let longitude = position.coords.longitude;
   let key = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(showTemp);
 }
 
@@ -219,8 +215,6 @@ function changeCity(event) {
   let citySearch = document.querySelector("#enter-city");
   let apiKey = "7dfa514196d8ad8df497144d715c56b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch.value}&units=metric&appid=${apiKey}`;
-  console.log(apiUrl);
-
   axios.get(apiUrl).then(showTemp);
 }
 
